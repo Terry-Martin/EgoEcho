@@ -14,38 +14,41 @@ SHEET = GSPREAD_CLIENT.open('ego_echo')
 
 psychopathy_sheet = SHEET.worksheet('psychopathy')
 
-
 def display_test_questions():
     data = psychopathy_sheet.get_all_values()
 
     print("Instructions")
     print("This quiz is designed to help give you some idea about whether or not you may be a psychopath or sociopath, or have psychopathic tendencies. This quiz is not meant to diagnose psychopathy or tell you definitively whether or not you’re a psychopath. But it will give you a pretty good idea, based upon the research. For each item, indicate how much you agree or disagree with the statement. Take your time and answer truthfully for the most accurate results.")
 
-    question = data[1][0]
-    print(f"\nQuestion 1: {question}\n")
-    answer = data[2][0]
-    print(f"1: {answer}")
-    answer = data[3][0]
-    print(f"2: {answer}")
-    answer = data[4][0]
-    print(f"3: {answer}\n")
+    question_count = 1
+    while question_count < 13:
+        question = data[question_count][0]
+        print(f"\nQuestion {question_count}: {question}\n")
+        question_count = question_count + 1
 
-    user_answer = input("Please select 1, 2 or 3: \n")
-    print(f"You have chosen: {user_answer}")
+        answer = data[0][1]
+        print(f"1: {answer}")
+        answer = data[1][1]
+        print(f"2: {answer}")
+        answer = data[2][1]
+        print(f"3: {answer}\n")
 
-    if int(user_answer) == 1:
-        score_this_question = 0
-    elif int(user_answer) == 2:
-        score_this_question = 1
-    elif int(user_answer) == 3:
-        score_this_question = 2
-    else :
-        print("Input Error")
-    print(f"Your score this question is {score_this_question}\n")
+        user_answer = input("Please select 1, 2 or 3: \n")
+        print(f"You have chosen: {user_answer}")
 
-    overall_score = 0
-    overall_score = int(overall_score) + int(score_this_question)
-    print(f"Your overall score so far is {overall_score}\n")
+        if int(user_answer) == 1:
+            score_this_question = 0
+        elif int(user_answer) == 2:
+            score_this_question = 1
+        elif int(user_answer) == 3:
+            score_this_question = 2
+        else :
+            print("Input Error")
+        print(f"Your score this question is {score_this_question}\n")
+
+        overall_score = 0
+        overall_score = int(overall_score) + int(score_this_question)
+        print(f"Your overall score so far is {overall_score}\n")
 
 
 def main():
