@@ -18,7 +18,17 @@ psychopathy_sheet = SHEET.worksheet('psychopathy')
 
 print("Instructions")
 print("This quiz is designed to help give you some idea about whether or not you may be a psychopath or sociopath, or have psychopathic tendencies. This quiz is not meant to diagnose psychopathy or tell you definitively whether or not you’re a psychopath. But it will give you a pretty good idea, based upon the research. For each item, indicate how much you agree or disagree with the statement. Take your time and answer truthfully for the most accurate results.")
+
 data = psychopathy_sheet.get_all_values()
-question = str(data[1])
+question = data[1][0]
+print("")
 print(question)
+print("")
+answer = data[2][0]
+print(f"1: {answer}")
+answer = data[3][0]
+print(f"2: {answer}")
+answer = data[4][0]
+print(f"3: {answer}\n")
+
 
