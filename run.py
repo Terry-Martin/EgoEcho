@@ -58,20 +58,26 @@ def display_test_questions():
 
     return overall_score
 
-
+"""
+Function details
+"""
 def user_result(data):
     if data < 13:
-        print("Not crazy :)")
-    elif data < 18:
-        print("Half crazy")
-    else :
-        print("CRAZY!!!!!!!!!")
+        print("No psychopathy\n")
+        print("You answered this quiz consistent with people who would not generally be considered a psychopath by research methods currently used to quickly screen for psychopathy in the population.")
 
+    elif data < 18:
+        print("Psychopathy possible\n")
+        print("You answered this quiz consistent with people who have moderately elevated scores on measures of psychopathy and psychopathic behavior. This may suggest a tendency for some psychopathic behaviors, especially when such behaviors result in your ")
+
+    else :
+        print("Psychopathy Likely")
+        print("You answered this quiz consistent with people who score high on measures of psychopathy and psychopathic behavior. This high score suggests that you likely have psychopathic tendencies.")
 
 
 def main():
-    testest = display_test_questions()
-    user_result(testest)
+    user_grade = display_test_questions()
+    user_result(user_grade)
 
 
 main()
