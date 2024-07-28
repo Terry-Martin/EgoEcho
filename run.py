@@ -13,12 +13,22 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('ego_echo')
 
 
+"""
+Function details
+"""
+def display_menu():
+    menu_choice = int(input("Please select 1 or 2: \n"))
+    if menu_choice == 1:
+        user_grade = display_psychopathy_questions()
+        user_result(user_grade)
+    elif menu_choice == 2:
+        display_emotional_intelligence_questions()
 
 
 """
 Function details
 """
-def display_test_questions():
+def display_psychopathy_questions():
 
     psychopathy_sheet = SHEET.worksheet('psychopathy')
 
@@ -118,10 +128,13 @@ def display_emotional_intelligence_questions():
         print(f"Your overall score so far is {overall_score}\n")
 
 
+"""
+Function details
+"""
 def main():
     #user_grade = display_test_questions()
     #user_result(user_grade)
-    display_emotional_intelligence_questions()
-
+    display_menu()
+    
 
 main()
