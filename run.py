@@ -56,8 +56,22 @@ def display_test_questions():
         overall_score = int(overall_score) + int(score_this_question)
         print(f"Your overall score so far is {overall_score}\n")
 
+    return overall_score
+
+
+def user_result(data):
+    if data < 13:
+        print("Not crazy :)")
+    elif data < 18:
+        print("Half crazy")
+    else :
+        print("CRAZY!!!!!!!!!")
+
+
 
 def main():
-    display_test_questions()
+    testest = display_test_questions()
+    user_result(testest)
+
 
 main()
