@@ -136,17 +136,18 @@ def display_emotional_intelligence_questions():
 def emotional_intelligence_result(data):
 
     #https://stackoverflow.com/questions/6632188/explicitly-select-items-from-a-list-or-tuple
-    self_aware = [data[index] for index in [0,6,10,13,16]]
-    print(self_aware)
+    self_aware = [data[index] for index in [0,4,18,11,14]]
+    self_aware_total = sum(self_aware)
+    print(self_aware_total)
 
-    self_manage = [data[index] for index in [4,7,11,14,19]]
+    self_manage = [data[index] for index in [2,5,9,12,17]]
     print(self_manage)
 
-    #social_awareness = [data[index] for index in [5,8,15,18,20]]
-    #print(social_awareness)
+    social_awareness = [data[index] for index in [3,6,13,16,18]]
+    print(social_awareness)
 
-    #relationship_management = [data[index] for index in [3,9,12,17,21]]
-    #print(relationship_management)
+    relationship_management = [data[index] for index in [1,7,10,15,19]]
+    print(relationship_management)
 
 
 
