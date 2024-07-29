@@ -22,7 +22,8 @@ def display_menu():
         user_grade = display_psychopathy_questions()
         user_result(user_grade)
     elif menu_choice == 2:
-        display_emotional_intelligence_questions()
+        emotional_intelligence_grade = display_emotional_intelligence_questions()
+        emotional_intelligence_result(emotional_intelligence_grade)
 
 
 """
@@ -96,44 +97,64 @@ def display_emotional_intelligence_questions():
     data = emotional_intelligence_sheet.get_all_values()
 
     question_count = 1
-    overall_score = 0
+    all_scores = []
 
     while question_count < 21:
         question = data[question_count][0]
         print(f"\nQuestion {question_count}: {question}\n")
         question_count = question_count + 1
 
-        option_one = data[0][1]
-        print(f"1: {option_one}")
-        option_two = data[1][1]
-        print(f"2: {option_two}")
-        option_three = data[2][1]
-        print(f"3: {option_three}\n")
+        print("1: Never")
+        print("2: Rarely")
+        print("3: Sometimes")
+        print("4: Usually")
+        print("5: Always")
 
-        user_answer = input("Please select 1, 2 or 3: \n")
+        user_answer = input("Please select 1, 2, 3, 4 or 5\n")
         print(f"You have chosen: {user_answer}")
 
         if int(user_answer) == 1:
-            score_this_question = 0
-        elif int(user_answer) == 2:
             score_this_question = 1
-        elif int(user_answer) == 3:
+        elif int(user_answer) == 2:
             score_this_question = 2
+        elif int(user_answer) == 3:
+            score_this_question = 3
+        elif int(user_answer) == 4:
+            score_this_question = 4
+        elif int(user_answer) == 5:
+            score_this_question = 5
         else :
             print("Input Error")
+
         print(f"Your score this question is {score_this_question}\n")
 
-        
-        overall_score = int(overall_score) + int(score_this_question)
-        print(f"Your overall score so far is {overall_score}\n")
+        all_scores.append(score_this_question)
+
+    return all_scores
+
+
+def emotional_intelligence_result(data):
+
+    #https://stackoverflow.com/questions/6632188/explicitly-select-items-from-a-list-or-tuple
+    self_aware = [data[index] for index in [0,6,10,13,16]]
+    print(self_aware)
+
+    self_manage = [data[index] for index in [4,7,11,14,19]]
+    print(self_manage)
+
+    #social_awareness = [data[index] for index in [5,8,15,18,20]]
+    #print(social_awareness)
+
+    #relationship_management = [data[index] for index in [3,9,12,17,21]]
+    #print(relationship_management)
+
 
 
 """
 Function details
 """
 def main():
-    #user_grade = display_test_questions()
-    #user_result(user_grade)
+
     display_menu()
     
 
