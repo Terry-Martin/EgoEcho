@@ -17,13 +17,18 @@ SHEET = GSPREAD_CLIENT.open('ego_echo')
 Function details
 """
 def display_menu():
-    menu_choice = int(input("Please select 1 or 2: \n"))
+
+    #https://psychcentral.com/quizzes/self-esteem-test
+    menu_choice = int(input("Please select 1, 2 or 3: \n"))
     if menu_choice == 1:
         user_grade = display_psychopathy_questions()
         user_result(user_grade)
     elif menu_choice == 2:
         emotional_intelligence_grade = display_emotional_intelligence_questions()
         emotional_intelligence_result(emotional_intelligence_grade)
+    elif menu_choice == 3:
+        self_esteem_grade = display_self_esteem_questions()
+        self_esteem_result(self_esteem_grade)
 
 
 """
@@ -148,6 +153,64 @@ def emotional_intelligence_result(data):
 
     relationship_management = [data[index] for index in [1,7,10,15,19]]
     print(relationship_management)
+
+
+"""
+Function details
+"""
+def display_self_esteem_questions():
+    self_esteem_sheet = SHEET.worksheet('self_esteem')
+
+    data = self_esteem_sheet.get_all_values()
+
+    print("Instructions")
+    print("Self-Esteem")
+
+    question_count = 1
+    overall_score = 0
+
+    while question_count < 17:
+        question = data[question_count][0]
+        print(f"\nQuestion {question_count}: {question}\n")
+        question_count = question_count + 1
+
+        print("1: Often")
+        print("2: Sometimes")
+        print("3: Almost never")
+
+
+        user_answer = input("Please select 1, 2 or 3: \n")
+        print(f"You have chosen: {user_answer}")
+
+        if int(user_answer) == 1:
+            score_this_question = 0
+        elif int(user_answer) == 2:
+            score_this_question = 1
+        elif int(user_answer) == 3:
+            score_this_question = 2
+        else :
+            print("Input Error")
+        print(f"Your score this question is {score_this_question}\n")
+
+        
+        overall_score = int(overall_score) + int(score_this_question)
+        print(f"Your overall score so far is {overall_score}\n")
+
+    return overall_score
+
+
+"""
+Function details
+"""
+def self_esteem_result(data):
+    if data < 11:
+        print("Low Self-Esteem\n")
+
+    elif data < 22:
+        print("Mid Self-Esteem\n")
+
+    else :
+        print("High Self-Esteem\n")
 
 
 
