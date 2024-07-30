@@ -19,7 +19,10 @@ Function details
 def display_menu():
 
     #https://psychcentral.com/quizzes/self-esteem-test
-    menu_choice = int(input("Please select 1, 2 or 3: \n"))
+    menu_choice = int(input("Please select 1 - psychopathy Test, 2 - Emotional Intelligence Test or 3 - Self-Esteem Test \n"))
+
+    test_validation(menu_choice)
+
     if menu_choice == 1:
         user_grade = display_psychopathy_questions()
         user_result(user_grade)
@@ -213,6 +216,22 @@ def self_esteem_result(data):
         print("High Self-Esteem\n")
 
 
+"""
+Function details
+"""
+def test_validation(data):
+    min_val = 1
+    max_val = 3
+
+    try:
+        number = int(input())
+        if min_val <= number <= max_val:
+            print(f"Valid input: {number}")
+        else:
+            print(f"Please enter an integer within the range of {min_val} to {max_val}.")
+    except ValueError:
+        print("This is not an integer. Please enter a valid integer.")
+
 
 """
 Function details
@@ -220,6 +239,7 @@ Function details
 def main():
 
     display_menu()
+    #test_validation()
     
 
 main()
