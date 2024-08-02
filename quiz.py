@@ -1,16 +1,18 @@
 # https://www.w3schools.com/python/python_classes.asp
 
 class Quiz:
-    def __init__(self, introduction, questions, answers, grade, feedback, disclaimer):
+    def __init__(self, introduction, questions, answers, score, feedback):
         self.introduction = introduction
         self.questions = questions
         self.answers = answers
-        self.grade = grade
+        self.score = score
         self.feedback = feedback
-        self.disclaimer = disclaimer
+        self.disclaimer = "This is just an online quix, dont take it serious"
 
     # Should be returned when the class object is represented as a string.
     def __str__(self):
-        return f"{self.introduction})"
+        return f"{self.introduction}"
+
+    
 
 
