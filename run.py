@@ -1,5 +1,6 @@
 import gspread
 from google.oauth2.service_account import Credentials
+from quiz import Quiz
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -239,8 +240,10 @@ Function details
 """
 def main():
 
+    quiz =  Quiz("Hello", "Question1", "Answer1", "Grade1", "Feedback1", "This is just an online quix, dont take it serious")
+    print(quiz.disclaimer)  
+    
     display_menu()
-    #test_validation()
     
 
 main()
