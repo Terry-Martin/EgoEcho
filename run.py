@@ -220,6 +220,7 @@ def self_esteem_result(data):
 Function details
 """
 def test_validation(data):
+    #Adapted from https://learningdaily.dev/how-to-take-integer-input-in-python-09decb2b129e
     min_val = 1
     max_val = 3
 
