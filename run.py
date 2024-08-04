@@ -45,7 +45,7 @@ def display_questions(quiz_choice):
     introduction = data[0][0]
     questions = ""
     answers = data_sheet.col_values(2)
-    score = 0
+    score = []
     feedback = ""
 
     current_quiz = Quiz(introduction, questions, answers, score, feedback)
@@ -56,7 +56,7 @@ def display_questions(quiz_choice):
     print(current_quiz.introduction)
     print(current_quiz.disclaimer)
 
-    current_quiz.score = 0
+    current_quiz.score = []
     question_count = 1
 
     while question_count < row_count:
@@ -66,27 +66,33 @@ def display_questions(quiz_choice):
         answer_count = 0
         number_of_possible_answers = len(current_quiz.answers)
 
+
         while answer_count < number_of_possible_answers: 
             print(f"{answer_count + 1}: {current_quiz.answers[answer_count]}\n")
             answer_count = answer_count + 1
 
         question_count = question_count + 1
 
-        user_answer = input("Please select select from the below:\n")
-        print(f"You have chosen: {user_answer}")
 
-        if int(user_answer) == 1:
-            score_this_question = 0
-        elif int(user_answer) == 2:
-            score_this_question = 1
-        elif int(user_answer) == 3:
-            score_this_question = 2
-        else :
-            print("Input Error")
-        print(f"Your score this question is {score_this_question}\n")
+        user_answer = input("Please select from the below:\n")
+        print(f"You have chosen: {user_answer}\n")
+
+
+        current_quiz.score.append(int(user_answer))
+        print (current_quiz.score)
+
+        #if int(user_answer) == 1:
+          #  score_this_question = 0
+       # elif int(user_answer) == 2:
+           # score_this_question = 1
+       # elif int(user_answer) == 3:
+           # score_this_question = 2
+        #else :
+            #print("Input Error")
+        #print(f"Your score this question is {score_this_question}\n")
         
-        current_quiz.score = int(current_quiz.score) + int(score_this_question)
-        print(f"Your overall score so far is {current_quiz.score}\n")
+        #current_quiz.score = int(current_quiz.score) + int(score_this_question)
+        #print(f"Your overall score so far is {current_quiz.score}\n")
 
     return current_quiz.score
 
@@ -95,11 +101,18 @@ def display_questions(quiz_choice):
 Function details
 """
 def user_result(data):
-    if data < 13:
+
+
+    print(data)
+    total_score = sum(data)
+    print(total_score)
+
+
+    if total_score < 13:
         print("No psychopathy\n")
         print("You answered this quiz consistent with people who would not generally be considered a psychopath by research methods currently used to quickly screen for psychopathy in the population.")
 
-    elif data < 18:
+    elif total_score < 18:
         print("Psychopathy possible\n")
         print("You answered this quiz consistent with people who have moderately elevated scores on measures of psychopathy and psychopathic behavior. This may suggest a tendency for some psychopathic behaviors, especially when such behaviors result in your personal gain.")
 
