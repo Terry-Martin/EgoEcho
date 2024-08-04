@@ -25,7 +25,8 @@ def display_menu():
     test_validation(menu_choice)
 
     if menu_choice == 1:
-        user_grade = display_psychopathy_questions()
+        quiz_choice = "psychopathy"
+        user_grade = display_psychopathy_questions(quiz_choice)
         user_result(user_grade)
     elif menu_choice == 2:
         emotional_intelligence_grade = display_emotional_intelligence_questions()
@@ -38,31 +39,32 @@ def display_menu():
 """
 Function details
 """
-def display_psychopathy_questions():
+def display_psychopathy_questions(quiz_choice):
 
-    psychopathy_sheet = SHEET.worksheet('psychopathy')
+    data_sheet = SHEET.worksheet(quiz_choice)
 
-    data = psychopathy_sheet.get_all_values()
+    data = data_sheet.get_all_values()
 
-    introduction = "Welcome to Psychopathy Self Assessment\nThis quiz is designed to help give you some idea about whether or not you may be a psychopath or sociopath, or have psychopathic tendencies. This quiz is not meant to diagnose psychopathy or tell you definitively whether or not you’re a psychopath. But it will give you a pretty good idea, based upon the research. For each item, indicate how much you agree or disagree with the statement. Take your time and answer truthfully for the most accurate results.\n"
-
+    introduction = data[0][0]
     questions = ""
     answers = ""
     score = 0
     feedback = ""
 
-    self_esteem_quiz = Quiz(introduction, questions, answers, score, feedback)
-    
-    print(self_esteem_quiz.introduction)
-    print(self_esteem_quiz.disclaimer)
-    print(self_esteem_quiz.feedback)
+    psychopathy = Quiz(introduction, questions, answers, score, feedback)
 
-    self_esteem_quiz.score = 0
+    row_count = len(data)
+    print(row_count)
+    
+    print(psychopathy.introduction)
+    print(psychopathy.disclaimer)
+
+    psychopathy.score = 0
     question_count = 1
 
-    while question_count < 13:
-        self_esteem_quiz.questions = data[question_count][0]
-        print(f"\nQuestion {question_count}: {self_esteem_quiz.questions}\n")
+    while question_count < (row_count):
+        psychopathy.questions = data[question_count][0]
+        print(f"\nQuestion {question_count}: {psychopathy.questions}\n")
         question_count = question_count + 1
 
         print("1: Not me \n")
@@ -83,10 +85,10 @@ def display_psychopathy_questions():
         print(f"Your score this question is {score_this_question}\n")
 
         
-        self_esteem_quiz.score = int(self_esteem_quiz.score) + int(score_this_question)
-        print(f"Your overall score so far is {self_esteem_quiz.score}\n")
+        psychopathy.score = int(psychopathy.score) + int(score_this_question)
+        print(f"Your overall score so far is {psychopathy.score}\n")
 
-    return self_esteem_quiz.score
+    return psychopathy.score
 
 """
 Function details
