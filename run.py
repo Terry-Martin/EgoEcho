@@ -21,10 +21,41 @@ Function details
 """
 def display_menu():
 
-    #https://psychcentral.com/quizzes/self-esteem-test
-    menu_choice = int(input("Please select 1 - psychopathy Test, 2 - Emotional Intelligence Test or 3 - Self-Esteem Test \n"))
+    # https://psychcentral.com/quizzes/self-esteem-test
+    # menu_choice = int(input("Please select 1 - psychopathy Test, 2 - Emotional Intelligence Test or 3 - Self-Esteem Test \n"))
+    #menu_choice = input("Please select 1 - psychopathy Test, 2 - Emotional Intelligence Test or 3 - Self-Esteem Test \n")
 
-    test_validation(menu_choice)
+    # test_validation(menu_choice)
+    #check_user_input(menu_choice)
+
+    print("1 - Psychopathy Self Assessment")
+    print("2 - Emotional Intelligence Self Assessment")
+    print("3 - Self-Esteem Self Assessment\n")
+
+    # https://stackoverflow.com/questions/23294658/asking-the-user-for-input-until-they-give-a-valid-response
+
+    min_val = 1
+    max_val = 3
+
+    while True:
+        try:
+            menu_choice = int(input("Please select 1, 2 or 3\n"))
+
+        except ValueError:
+            print("Sorry, I didn't understand that.")
+            continue
+
+        if menu_choice < min_val:
+            print(f"Please enter an integer within the range of {min_val} to {max_val}.")
+        
+        elif menu_choice > max_val:
+            print(f"Please enter an integer within the range of {min_val} to {max_val}.")
+        
+        else:
+            # Input successfully parsed
+            break
+    
+
 
     if menu_choice == 1:
         quiz_choice = "psychopathy"
@@ -33,8 +64,10 @@ def display_menu():
     elif menu_choice == 3:
         quiz_choice = "self_esteem"
     
-    user_grade = display_questions(quiz_choice)
-    user_result(user_grade)
+    print(menu_choice)
+
+    #user_grade = display_questions(quiz_choice)
+    #user_result(user_grade)
 
 """
 Function details
@@ -142,7 +175,7 @@ def user_result(current_quiz):
         print(f"Your Relationship Management score is {relationship_management_total}")
 
     else:
-        print("Something nor quite right")
+        print("Something not quite right")
 
 
 """
@@ -163,6 +196,9 @@ def test_validation(data):
         print("This is not an integer. Please enter a valid integer.")
 
 
+
+
+
 """
 Function details
 """
@@ -170,5 +206,5 @@ def main():
     
     display_menu()
     
-    
+
 main()
