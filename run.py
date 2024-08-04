@@ -1,6 +1,8 @@
+import os
 import gspread
 from google.oauth2.service_account import Credentials
 from quiz import Quiz
+
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -61,6 +63,8 @@ def display_questions(quiz_choice):
     question_count = 1
 
     while question_count < row_count:
+        
+        os.system('clear')
         current_quiz.questions = data[question_count][0]
         print(f"\nQuestion {question_count}: {current_quiz.questions}\n")
 
