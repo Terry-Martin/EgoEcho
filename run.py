@@ -44,7 +44,7 @@ def display_questions(quiz_choice):
     data_sheet = SHEET.worksheet(quiz_choice)
     data = data_sheet.get_all_values()
 
-    title = ""
+    title = data[0][2]
     introduction = data[0][0]
     questions = ""
     answers = data_sheet.col_values(2)
@@ -57,6 +57,7 @@ def display_questions(quiz_choice):
     print(row_count)
     
     print(current_quiz.introduction)
+    print(current_quiz.title)
     print(current_quiz.disclaimer)
 
     current_quiz.score = []
@@ -64,7 +65,7 @@ def display_questions(quiz_choice):
 
     while question_count < row_count:
         
-        os.system('clear')
+        #os.system('clear')
         current_quiz.questions = data[question_count][0]
         print(f"\nQuestion {question_count}: {current_quiz.questions}\n")
 
@@ -90,21 +91,58 @@ Function details
 """
 def user_result(current_quiz):
 
-    total_score = sum(current_quiz.score)
-    print(total_score)
+    if current_quiz.title == "Psychopathy Self Assessment":
 
-    if total_score < 13:
-        print("No psychopathy\n")
-        print("You answered this quiz consistent with people who would not generally be considered a psychopath by research methods currently used to quickly screen for psychopathy in the population.")
+        total_score = sum(current_quiz.score)
+        print(total_score)
 
-    elif total_score < 18:
-        print("Psychopathy possible\n")
-        print("You answered this quiz consistent with people who have moderately elevated scores on measures of psychopathy and psychopathic behavior. This may suggest a tendency for some psychopathic behaviors, especially when such behaviors result in your personal gain.")
+        if total_score < 13:
+            print("No psychopathy\n")
+            print("You answered this quiz consistent with people who would not generally be considered a psychopath by research methods currently used to quickly screen for psychopathy in the population.")
 
-    else :
-        print("Psychopathy Likely\n")
-        print("You answered this quiz consistent with people who score high on measures of psychopathy and psychopathic behavior. This high score suggests that you likely have psychopathic tendencies.")
+        elif total_score < 18:
+            print("Psychopathy possible\n")
+            print("You answered this quiz consistent with people who have moderately elevated scores on measures of psychopathy and psychopathic behavior. This may suggest a tendency for some psychopathic behaviors, especially when such behaviors result in your personal gain.")
 
+        else :
+            print("Psychopathy Likely\n")
+            print("You answered this quiz consistent with people who score high on measures of psychopathy and psychopathic behavior. This high score suggests that you likely have psychopathic tendencies.")
+    
+    elif current_quiz.title == "Self-Esteem Self Assessment":
+
+        total_score = sum(current_quiz.score)
+        print(total_score)
+
+        if total_score < 11:
+            print("Low Self-Esteem\n")
+
+        elif total_score < 22:
+            print("Mid Self-Esteem\n")
+
+        else :
+            print("High Self-Esteem\n")
+
+    elif current_quiz.title == "Emotional Intelligence Self Assessment":
+
+        #https://stackoverflow.com/questions/6632188/explicitly-select-items-from-a-list-or-tuple
+        self_aware = [current_quiz.score[index] for index in [0,4,18,11,14]]
+        self_aware_total = sum(self_aware)
+        print(f"Your Self Aware score is {self_aware_total}")
+
+        self_manage = [current_quiz.score[index] for index in [2,5,9,12,17]]
+        self_manage_total = sum(self_manage)
+        print(f"Your Self Manage score is {self_manage_total}")
+
+        social_awareness = [current_quiz.score[index] for index in [3,6,13,16,18]]
+        social_awareness_total = sum(social_awareness)
+        print(f"Your Social Awareness score is {social_awareness_total}")
+
+        relationship_management = [current_quiz.score[index] for index in [1,7,10,15,19]]
+        relationship_management_total = sum(relationship_management)
+        print(f"Your Relationship Management score is {relationship_management_total}")
+
+    else:
+        print("Something nor quite right")
 
 """
 Function details
@@ -155,16 +193,19 @@ def emotional_intelligence_result(data):
     #https://stackoverflow.com/questions/6632188/explicitly-select-items-from-a-list-or-tuple
     self_aware = [data[index] for index in [0,4,18,11,14]]
     self_aware_total = sum(self_aware)
-    print(self_aware_total)
+    print(f"Your Self Aware score is {self_aware_total}")
 
     self_manage = [data[index] for index in [2,5,9,12,17]]
-    print(self_manage)
+    self_manage_total = sum(self_manage)
+    print(f"Your Self Manage score is {self_manage_total}")
 
     social_awareness = [data[index] for index in [3,6,13,16,18]]
-    print(social_awareness)
+    social_awareness_total = sum(social_awareness)
+    print(f"Your Social Awareness score is {social_awareness_total}")
 
     relationship_management = [data[index] for index in [1,7,10,15,19]]
-    print(relationship_management)
+    relationship_management_total = sum(relationship_management)
+    print(f"Your Relationship Management score is {relationship_management_total}")
 
 
 """
