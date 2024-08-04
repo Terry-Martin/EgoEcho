@@ -42,13 +42,14 @@ def display_questions(quiz_choice):
     data_sheet = SHEET.worksheet(quiz_choice)
     data = data_sheet.get_all_values()
 
+    title = ""
     introduction = data[0][0]
     questions = ""
     answers = data_sheet.col_values(2)
     score = []
     feedback = ""
 
-    current_quiz = Quiz(introduction, questions, answers, score, feedback)
+    current_quiz = Quiz(title, introduction, questions, answers, score, feedback)
 
     row_count = len(data)
     print(row_count)
@@ -66,47 +67,27 @@ def display_questions(quiz_choice):
         answer_count = 0
         number_of_possible_answers = len(current_quiz.answers)
 
-
         while answer_count < number_of_possible_answers: 
             print(f"{answer_count + 1}: {current_quiz.answers[answer_count]}\n")
             answer_count = answer_count + 1
 
         question_count = question_count + 1
 
-
         user_answer = input("Please select from the below:\n")
         print(f"You have chosen: {user_answer}\n")
 
-
         current_quiz.score.append(int(user_answer))
-        print (current_quiz.score)
 
-        #if int(user_answer) == 1:
-          #  score_this_question = 0
-       # elif int(user_answer) == 2:
-           # score_this_question = 1
-       # elif int(user_answer) == 3:
-           # score_this_question = 2
-        #else :
-            #print("Input Error")
-        #print(f"Your score this question is {score_this_question}\n")
-        
-        #current_quiz.score = int(current_quiz.score) + int(score_this_question)
-        #print(f"Your overall score so far is {current_quiz.score}\n")
-
-    return current_quiz.score
+    return current_quiz
 
 
 """
 Function details
 """
-def user_result(data):
+def user_result(current_quiz):
 
-
-    print(data)
-    total_score = sum(data)
+    total_score = sum(current_quiz.score)
     print(total_score)
-
 
     if total_score < 13:
         print("No psychopathy\n")
