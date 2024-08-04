@@ -26,23 +26,20 @@ def display_menu():
 
     if menu_choice == 1:
         quiz_choice = "psychopathy"
-        user_grade = display_psychopathy_questions(quiz_choice)
-        user_result(user_grade)
     elif menu_choice == 2:
-        emotional_intelligence_grade = display_emotional_intelligence_questions()
-        emotional_intelligence_result(emotional_intelligence_grade)
+        quiz_choice = "emotional_intelligence"
     elif menu_choice == 3:
-        self_esteem_grade = display_self_esteem_questions()
-        self_esteem_result(self_esteem_grade)
-
+        quiz_choice = "self_esteem"
+    
+    user_grade = display_questions(quiz_choice)
+    user_result(user_grade)
 
 """
 Function details
 """
-def display_psychopathy_questions(quiz_choice):
+def display_questions(quiz_choice):
 
     data_sheet = SHEET.worksheet(quiz_choice)
-
     data = data_sheet.get_all_values()
 
     introduction = data[0][0]
@@ -51,20 +48,20 @@ def display_psychopathy_questions(quiz_choice):
     score = 0
     feedback = ""
 
-    psychopathy = Quiz(introduction, questions, answers, score, feedback)
+    current_quiz = Quiz(introduction, questions, answers, score, feedback)
 
     row_count = len(data)
     print(row_count)
     
-    print(psychopathy.introduction)
-    print(psychopathy.disclaimer)
+    print(current_quiz.introduction)
+    print(current_quiz.disclaimer)
 
-    psychopathy.score = 0
+    current_quiz.score = 0
     question_count = 1
 
     while question_count < (row_count):
-        psychopathy.questions = data[question_count][0]
-        print(f"\nQuestion {question_count}: {psychopathy.questions}\n")
+        current_quiz.questions = data[question_count][0]
+        print(f"\nQuestion {question_count}: {current_quiz.questions}\n")
         question_count = question_count + 1
 
         print("1: Not me \n")
@@ -83,12 +80,12 @@ def display_psychopathy_questions(quiz_choice):
         else :
             print("Input Error")
         print(f"Your score this question is {score_this_question}\n")
-
         
-        psychopathy.score = int(psychopathy.score) + int(score_this_question)
-        print(f"Your overall score so far is {psychopathy.score}\n")
+        current_quiz.score = int(current_quiz.score) + int(score_this_question)
+        print(f"Your overall score so far is {current_quiz.score}\n")
 
-    return psychopathy.score
+    return current_quiz.score
+
 
 """
 Function details
