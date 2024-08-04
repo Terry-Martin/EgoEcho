@@ -44,7 +44,7 @@ def display_questions(quiz_choice):
 
     introduction = data[0][0]
     questions = ""
-    answers = ""
+    answers = data_sheet.col_values(2)
     score = 0
     feedback = ""
 
@@ -59,16 +59,20 @@ def display_questions(quiz_choice):
     current_quiz.score = 0
     question_count = 1
 
-    while question_count < (row_count):
+    while question_count < row_count:
         current_quiz.questions = data[question_count][0]
         print(f"\nQuestion {question_count}: {current_quiz.questions}\n")
+
+        answer_count = 0
+        number_of_possible_answers = len(current_quiz.answers)
+
+        while answer_count < number_of_possible_answers: 
+            print(f"{answer_count + 1}: {current_quiz.answers[answer_count]}\n")
+            answer_count = answer_count + 1
+
         question_count = question_count + 1
 
-        print("1: Not me \n")
-        print("2: This describes me somewhat \n")
-        print("3: This is definitely me \n")
-
-        user_answer = input("Please select 1, 2 or 3: \n")
+        user_answer = input("Please select select from the below:\n")
         print(f"You have chosen: {user_answer}")
 
         if int(user_answer) == 1:
