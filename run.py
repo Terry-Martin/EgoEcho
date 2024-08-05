@@ -2,6 +2,19 @@ import os
 import gspread
 from google.oauth2.service_account import Credentials
 from quiz import Quiz
+from colorama import Fore, Back, Style
+import pyfiglet
+
+ascii_banner = pyfiglet.figlet_format("Ego Echo")
+print(ascii_banner)
+ 
+print(Fore.RED + 'some red text')
+print(Fore.BLACK + 'some red text')
+print(Back.RED + 'some red text')
+print(Back.WHITE + 'some red text')
+print(Style.BRIGHT + 'some red text')
+print(Style.DIM + 'some red text')
+print(Style.RESET_ALL)
 
 
 SCOPE = [
