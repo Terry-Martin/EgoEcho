@@ -23,10 +23,6 @@ def display_menu():
 
     # https://psychcentral.com/quizzes/self-esteem-test
     # menu_choice = int(input("Please select 1 - psychopathy Test, 2 - Emotional Intelligence Test or 3 - Self-Esteem Test \n"))
-    #menu_choice = input("Please select 1 - psychopathy Test, 2 - Emotional Intelligence Test or 3 - Self-Esteem Test \n")
-
-    # test_validation(menu_choice)
-    #check_user_input(menu_choice)
 
     print("1 - Psychopathy Self Assessment")
     print("2 - Emotional Intelligence Self Assessment")
@@ -54,8 +50,6 @@ def display_menu():
         else:
             # Input successfully parsed
             break
-    
-
 
     if menu_choice == 1:
         quiz_choice = "psychopathy"
@@ -63,11 +57,9 @@ def display_menu():
         quiz_choice = "emotional_intelligence"
     elif menu_choice == 3:
         quiz_choice = "self_esteem"
-    
-    print(menu_choice)
 
-    #user_grade = display_questions(quiz_choice)
-    #user_result(user_grade)
+    user_grade = display_questions(quiz_choice)
+    user_result(user_grade)
 
 """
 Function details
@@ -111,8 +103,26 @@ def display_questions(quiz_choice):
 
         question_count = question_count + 1
 
-        user_answer = input("Please select from the below:\n")
-        print(f"You have chosen: {user_answer}\n")
+        min_val = 1
+        max_val = 3
+
+        while True:
+            try:
+                user_answer = int(input("Please make a selection\n"))
+
+            except ValueError:
+                print("Sorry, I didn't understand that.")
+                continue
+
+            if user_answer < min_val:
+                print(f"Please enter an integer within the range of {min_val} to {max_val}.")
+            
+            elif user_answer > max_val:
+                print(f"Please enter an integer within the range of {min_val} to {max_val}.")
+            
+            else:
+                # Input successfully parsed
+                break
 
         current_quiz.score.append(int(user_answer))
 
@@ -176,27 +186,6 @@ def user_result(current_quiz):
 
     else:
         print("Something not quite right")
-
-
-"""
-Function details
-"""
-def test_validation(data):
-    #Adapted from https://learningdaily.dev/how-to-take-integer-input-in-python-09decb2b129e
-    min_val = 1
-    max_val = 3
-
-    try:
-        number = int(input())
-        if min_val <= number <= max_val:
-            print(f"Valid input: {number}")
-        else:
-            print(f"Please enter an integer within the range of {min_val} to {max_val}.")
-    except ValueError:
-        print("This is not an integer. Please enter a valid integer.")
-
-
-
 
 
 """
