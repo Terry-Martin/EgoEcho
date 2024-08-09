@@ -8,7 +8,7 @@ import pyfiglet
 ascii_banner = pyfiglet.figlet_format("Ego Echo")
 print(ascii_banner)
  
-print(Fore.RED + 'some red text')
+print("Hmmm" + Fore.RED + 'some red text')
 print(Fore.BLACK + 'some red text')
 print(Back.RED + 'some red text')
 print(Back.WHITE + 'some red text')
@@ -34,8 +34,11 @@ Function details
 """
 def display_menu():
 
+    print("Welcome to " + Fore.RED + Style.BRIGHT + "Ego Echo \n")
+    print(Style.RESET_ALL)
+    print("We have three psychological self-assessment tests for you to choose from. \n")
+
     # https://psychcentral.com/quizzes/self-esteem-test
-    # menu_choice = int(input("Please select 1 - psychopathy Test, 2 - Emotional Intelligence Test or 3 - Self-Esteem Test \n"))
 
     print("1 - Psychopathy Self Assessment")
     print("2 - Emotional Intelligence Self Assessment")
@@ -117,7 +120,7 @@ def display_questions(quiz_choice):
         question_count = question_count + 1
 
         min_val = 1
-        max_val = 3
+        max_val = len(current_quiz.answers)
 
         while True:
             try:
