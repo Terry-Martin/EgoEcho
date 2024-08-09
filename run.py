@@ -214,5 +214,6 @@ Function details
 def main():
     
     display_menu()
+    exit()
    
 main()
