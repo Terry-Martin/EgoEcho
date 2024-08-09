@@ -1,5 +1,3 @@
-# https://www.w3schools.com/python/python_classes.asp
-
 class Quiz:
     def __init__(self, title, introduction, questions, answers, score,
                  feedback):
