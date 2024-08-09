@@ -5,6 +5,8 @@ from quiz import Quiz
 from colorama import Fore, Back, Style
 import pyfiglet
 
+
+# Main Heading
 ascii_banner = pyfiglet.figlet_format("Ego Echo")
 print(ascii_banner)
  
@@ -95,18 +97,17 @@ def display_questions(quiz_choice):
     current_quiz = Quiz(title, introduction, questions, answers, score, feedback)
 
     row_count = len(data)
-    print(row_count)
     
+    print(Fore.RED + Style.BRIGHT + current_quiz.title)
+    print(Style.RESET_ALL)
     print(current_quiz.introduction)
-    print(current_quiz.title)
-    print(current_quiz.disclaimer)
 
     current_quiz.score = []
     question_count = 1
 
     while question_count < row_count:
         
-        #os.system('clear')
+        os.system('clear')
         current_quiz.questions = data[question_count][0]
         print(f"\nQuestion {question_count}: {current_quiz.questions}\n")
 
@@ -150,34 +151,32 @@ Function details
 """
 def user_result(current_quiz):
 
+    os.system('clear')
+
     if current_quiz.title == "Psychopathy Self Assessment":
 
         total_score = sum(current_quiz.score)
-        print(total_score)
 
         if total_score < 13:
             print("No psychopathy\n")
-            print("You answered this quiz consistent with people who would not generally be considered a psychopath by research methods currently used to quickly screen for psychopathy in the population.")
+            print("You answered this quiz consistent with people who would not generally be considered a psychopath by research methods currently used to quickly screen for psychopathy in the population.\n")
 
         elif total_score < 18:
             print("Psychopathy possible\n")
-            print("You answered this quiz consistent with people who have moderately elevated scores on measures of psychopathy and psychopathic behavior. This may suggest a tendency for some psychopathic behaviors, especially when such behaviors result in your personal gain.")
+            print("You answered this quiz consistent with people who have moderately elevated scores on measures of psychopathy and psychopathic behavior. This may suggest a tendency for some psychopathic behaviors, especially when such behaviors result in your personal gain.\n")
 
         else :
             print("Psychopathy Likely\n")
-            print("You answered this quiz consistent with people who score high on measures of psychopathy and psychopathic behavior. This high score suggests that you likely have psychopathic tendencies.")
+            print("You answered this quiz consistent with people who score high on measures of psychopathy and psychopathic behavior. This high score suggests that you likely have psychopathic tendencies.\n")
     
     elif current_quiz.title == "Self-Esteem Self Assessment":
 
         total_score = sum(current_quiz.score)
-        print(total_score)
 
         if total_score < 11:
             print("Low Self-Esteem\n")
-
         elif total_score < 22:
             print("Mid Self-Esteem\n")
-
         else :
             print("High Self-Esteem\n")
 
@@ -198,10 +197,15 @@ def user_result(current_quiz):
 
         relationship_management = [current_quiz.score[index] for index in [1,7,10,15,19]]
         relationship_management_total = sum(relationship_management)
-        print(f"Your Relationship Management score is {relationship_management_total}")
+        print(f"Your Relationship Management score is {relationship_management_total}\n")
 
     else:
         print("Something not quite right")
+    
+    print("\n")
+
+    print(Fore.RED + Style.BRIGHT + current_quiz.disclaimer)
+    print(Style.RESET_ALL)
 
 
 """
@@ -210,6 +214,5 @@ Function details
 def main():
     
     display_menu()
-    
-
+   
 main()

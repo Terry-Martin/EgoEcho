@@ -8,7 +8,7 @@ class Quiz:
         self.answers = answers
         self.score = score
         self.feedback = feedback
-        self.disclaimer = "This is just an online quiz, dont take it seriously"
+        self.disclaimer = "This is just an online quiz, dont take it seriously!!! \n"
 
     # Should be returned when the class object is represented as a string.
     def __str__(self):
