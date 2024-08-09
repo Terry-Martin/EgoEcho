@@ -104,7 +104,6 @@ def display_questions(quiz_choice):
 
     while question_count < row_count:
 
-        os.system('clear')
         current_quiz.questions = data[question_count][0]
         print(f"\nQuestion {question_count}: {current_quiz.questions}\n")
 
@@ -184,15 +183,47 @@ def user_result(current_quiz):
         total_score = sum(current_quiz.score)
 
         if total_score < 11:
-            print("Low Self-Esteem\n")
+            print("Your Results: Low Self-Esteem\n")
+            print("You scored in the 0-10 range, which indicates you may have \
+                  low self-esteem. You may have trouble liking yourself or \
+                  feeling confident about who you are. As a result, you may turn \
+                  to others and outside sources (career, relationship, \
+                  financial status) to judge yourself and your worth. You likely \
+                  compare yourself to others and fear you’re not good enough as \
+                  you are. \n")
+            print("Although you show signs of low self-esteem, this is just your \
+                  starting point. Anyone can develop high self-esteem and learn \
+                  to accept who they are.\n")
         elif total_score < 22:
-            print("Mid Self-Esteem\n")
+            print("Your Results: Mid Self-Esteem\n")
+            print("You scored in the 11-21 range, which indicates you have \
+                  moderate self-esteem. Although you may likely seek outside \
+                  validation and can be your own harshest critic at times, you \
+                  have begun to identify some things you like about yourself.\n")
+            print("You’re still developing your sense of self and discovering \
+                  where you fit in the world.\n")
+            print("You can work on your self-esteem through any combination of \
+                  selfhelp tools, journal prompts, and therapy.\n")
         else:
-            print("High Self-Esteem\n")
+            print("Your Results: High Self-Esteem\n")
+            print("You scored in the 22-32 range, which indicates you have high \
+                  self-esteem. Confidence and self-worth either come naturally \
+                  to you or you’ve already begun the work of accepting who you \
+                    are and discovering what you have to offer.\n")
+            print("You understand that what matters most is how you view yourself \
+                  and are able to recover when outside perspectives shake your \
+                  confidence at times. You’re OK with making mistakes and don’t \
+                  judge yourself too harshly for being imperfect. You may still have \
+                  insecurities but you’re aware of them and don’t let them \
+                  control your life.\n")
 
     elif current_quiz.title == "Emotional Intelligence Self Assessment":
 
         # https://stackoverflow.com/questions/6632188/explicitly-select-items-from-a-list-or-tuple
+
+        print("Your score on these four components of Emotional Intelligence can range \
+              from a low of 5 to a high of 25. Any component where your score is below \
+              18 is an area in which you could improve.\n")
 
         self_aware = [current_quiz.score[index] for
                       index in [0, 4, 18, 11, 14]]
